@@ -46,6 +46,16 @@ jobs:
     paths:
       - node_modules
 
+- name: test:eslint
+  stage: test
+  image: node:12-alpine
+  before_script:
+  - npm install --save-dev eslint
+  script:
+  - npx eslint ./resources/.
+  after_script:
+  - echo "Finish job"
+
 - name: test:phpcs
   stage: test
   image: sunasteriskrnd/php-workspace:7.4
@@ -53,8 +63,8 @@ jobs:
   - composer global require "squizlabs/php_codesniffer=*"
   - composer install
   script:
-  - ~/.composer/vendor/bin/phpcs --ignore=vendor,bootstrap/cache/,storage,database,coverage,public,resources,node_modules --standard=PSR2,PSR1 ./
-  - ~/.composer/vendor/bin/phpcs --standard=PSR2,PSR1 resources/lang
+  - ~/.composer/vendor/bin/phpcs --ignore=vendor,bootstrap/cache/,storage,database,coverage,public,resources,node_modules --standard=PSR12 ./
+  - ~/.composer/vendor/bin/phpcs --standard=PSR12 resources/lang
 
 - name: test:phpunit
   stage: test
