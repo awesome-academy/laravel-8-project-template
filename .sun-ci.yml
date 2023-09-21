@@ -60,11 +60,9 @@ jobs:
     stage: test
     image: sunasteriskrnd/php-workspace:7.4
     before_script:
-      - composer global require "squizlabs/php_codesniffer=*"
       - composer install
     script:
-      - ~/.composer/vendor/bin/phpcs --ignore=vendor,bootstrap/cache/,storage,database,coverage,public,resources,node_modules --standard=PSR12 ./
-      - ~/.composer/vendor/bin/phpcs --standard=PSR12 resources/lang
+      - ./vendor/bin/phpcs --standard=./phpcs.xml
 
   - name: test:phpunit
     stage: test

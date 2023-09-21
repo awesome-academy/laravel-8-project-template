@@ -4,7 +4,9 @@ module.exports = {
         "node": true,
         "es2021": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+    ],
     "overrides": [
         {
             "files": [
@@ -20,6 +22,15 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        "indent": ["error", 4],
         "eol-last": ["error", "always"],
+        "max-len": ["error", 120, {
+            "ignoreUrls": true,
+            "ignoreComments": false,
+            "ignoreRegExpLiterals": true,
+            "ignoreStrings": true,
+            "ignoreTemplateLiterals": true
+        }],
+        "max-lines": ["error", 200],
     }
 }
